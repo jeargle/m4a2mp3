@@ -1,2 +1,10 @@
-# m4a2mp3
+m4a2mp3
+=======
+
 convert music files from m4a to mp3
+
+
+Dependencies
+------------
+
+* ffmpeg
