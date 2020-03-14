@@ -16,9 +16,14 @@ def m4a2mp3(path):
             call(ffmpeg_command, shell=True)
 
 
-
 if __name__=='__main__':
     parser = ArgumentParser(description='convert m4a files to mp3')
+    parser.add_argument(
+        '-r',
+        '--recursive',
+        action='store_true',
+        help='convert files throughout the directory tree'
+    )
     parser.add_argument(
         'path',
         type=str,
@@ -26,4 +31,9 @@ if __name__=='__main__':
     )
 
     args = parser.parse_args()
-    m4a2mp3(args.path)
+    if args.recursive:
+        for path, _, files in os.walk(args.path):
+            if len(files) > 0:
+                m4a2mp3(path)
+    else:
+        m4a2mp3(args.path)
